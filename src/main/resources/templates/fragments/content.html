@@ -1,0 +1,195 @@
+<!--This is the project listing fragment-->
+<div th:fragment="project_listing" class="row" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<style type="text/css">
+#container {
+	min-width: auto;
+	max-width: 800px;
+	height: 400px;
+	margin: 0 auto
+}
+		</style>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+    <div class="col-md-3">
+        <p class="lead">Navigation</p>
+        <div class="list-group">
+            <a href="/add" class="list-group-item">New Project</a>
+            <!--<a href="/myProjects" class="list-group-item">My Projects</a>-->
+            <a href="/logout" class="list-group-item">Logout</a>
+        </div>
+    </div>
+        <div class="row">
+            <!--<h2 align="center">User Projects</h2>-->
+            <hr/>
+            <div th:each="project : *{getProjectEntities()}" class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                
+          
+                 	<div id="container"></div>
+                
+                    
+                    <div class="caption">
+                        <!--  --> <!--<h4 class="pull-right" th:text="'€'+${project.getProjectGoal()}">IOTDataGoal</h4>   <div ng-controller="MyCtrl">
+                        
+                        </div> -->
+                        <h4><a th:href="@{'/IOTData?title='+${project.getTitle()}}"  th:text="${project.getTitle()}">Title</a>
+                        </h4>
+                        <!--<h6 th:text="${project.getProjectOwner().getUname()}">Username</h6>-->
+                        <p th:text="${project.getDescription()}">Description</p>
+                    </div>
+                    <div class="ratings">
+                        <p>
+                        <div class="progress" style="width: 65%; height: 15px">
+                            <div th:style="'width:'+${project.getGoalPercentage()}+'%'" class="progress-bar"
+                                 role="progressbar" aria-valuenow="70"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                            </div>
+                        </div>
+                        <ul class="list-inline">
+                            <li>
+                                <span th:text="${project.getGoalPercentage()}+'%'">0</span>
+                                <br/>Completed
+                            </li>
+                            <!--<li>
+                                <span th:text="'€'+${project.getIOTDatad()}">0</span>
+                                <br/>IOTDatad
+                            </li>-->
+                            <li>
+                                <span th:text="${project.getDaysRemaining()}">0</span>
+                                <br/>Predicted hours left
+                            </li>
+                            <li>
+                                <span th:text="${project.getFinalGoalPercentage()}">0</span>
+                                <br/>Predicted Final percentage
+                            </li>
+                            <!--<li>
+                        		<span th:class="${project.getStatus()}? text-success : text-warning" 
+                        			th:text="'Status:' +${project.getStatus()}? 'Active' : 'Closed'">Open</span>
+                        	</li>-->
+                        	
+                            <!--<li th:if="*{getUserEntity().getAdmin()}">
+                              <span th:if="${project.getDaysRemaining() &lt; 1 or project.getGoalPercentage() &gt; 99 }"></li>-->
+                                <a href="/close" class="btn btn-link">Close</a>
+                            
+                            
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+                
+                	<script type="text/javascript"  th:inline="javascript">
+        
+        				/*<![CDATA[*/
+        	
+        					var myVar = [[${project.getNewpoints()}]]
+        	
+							Highcharts.chart('container', {
+							
+							    title: {
+							        text: [[${project.getTitle()}]]
+							    },
+							
+							    yAxis: {
+							        title: {
+							            text: 'Percentage'
+							        }
+							    },
+							    legend: {
+							        layout: 'vertical',
+							        align: 'right',
+							        verticalAlign: 'middle'
+							    },
+							
+							    plotOptions: {
+							        series: {
+							            pointStart: 1
+							        }
+							    },
+							
+							    series: [{
+							        name: 'Alcahol %',
+							        data: myVar
+							    }]
+							
+							});
+							        
+						/*]]>*/
+				</script>
+                
+                
+                
+                
+            </div>
+        </div>
+        
+        
+
+    </div>
+    
+
+
+
+<!--To display this page, just call 'pageContext.setContainerFragment("new_awesome_page");' in the controller.-->
+<div th:fragment="my_projects" class="row" xmlns:th="http://www.w3.org/1999/xhtml">
+        <div class="col-md-3">
+        <p class="lead">Navigation</p>
+        <div class="list-group">
+            <a href="/add" class="list-group-item">New Project</a>
+            <!--<a href="/myProjects" class="list-group-item">My Projects</a>-->
+            <a href="/logout" class="list-group-item">Logout</a>
+        </div>
+    </div>
+        <div class="row">
+            <!--<h2 align="center">User Projects</h2>-->
+            <hr/>
+            <div th:each="project : *{getProjectEntities()}" class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                
+                    <div class="caption">
+                    
+                        <h4><a th:href="@{'/IOTData?title='+${project.getTitle()}}"  th:text="${project.getTitle()}">Title</a>
+                        </h4>
+                        <!--<h6 th:text="${project.getProjectOwner().getUname()}">Username</h6>-->
+                        <p th:text="${project.getDescription()}">Description</p>
+                    </div>
+                    <div class="ratings">
+                        <p>
+                        <div class="progress" style="width: 65%; height: 15px">
+                            <div th:style="'width:'+${project.getGoalPercentage()}+'%'" class="progress-bar"
+                                 role="progressbar" aria-valuenow="70"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                            </div>
+                        </div>
+                        <ul class="list-inline">
+                            <li>
+                                <span th:text="${project.getGoalPercentage()}+'%'">0</span>
+                                <br/>Completed
+                            </li>
+                           
+                            <li>
+                                <span th:text="${project.getDaysRemaining()}">0</span>
+                                <br/>Predicted hours left
+                            </li>
+                            
+                            <!--<li>
+                        		<span th:class="${project.getStatus()}? text-success : text-warning" 
+                        			th:text="'Status:' +${project.getStatus()}? 'Active' : 'Closed'">Open</span>
+                        	</li>-->
+                        	
+                            <!--<li th:if="*{getUserEntity().getAdmin()}">
+                              <span th:if="${project.getDaysRemaining() &lt; 1 or project.getGoalPercentage() &gt; 99 }"></li>-->
+                                <a href="/close" class="btn btn-link">Close</a>
+                            
+                            
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
