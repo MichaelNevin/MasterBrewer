@@ -1,13 +1,7 @@
-# Spring Boot Heroku demo
+# Internet of Things for MicrobreweryApplication by Michael nevin
 
-[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+The login if for the program is either Michael and the password is nevin (passsword preotection isnt enforced using any character or integer will og you in) 
 
-This is a small demo application for showing how to run a [Spring Boot](http://projects.spring.io/spring-boot/)
-application on [Heroku](http://heroku.com). For more information see the Dev Center article on 
-[Deploying Spring Boot Applications to Heroku](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku).
+[![Link for the up and running server](https://thawing-basin-58241.herokuapp.com/)
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
-## License
-
-Code is under the [Apache Licence v2](https://www.apache.org/licenses/LICENSE-2.0.txt).
+If the server take a while to load it is just because the program has to restart when it is left idel too long.
